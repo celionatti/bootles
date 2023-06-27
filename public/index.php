@@ -1,18 +1,9 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
-use Psr\Http\Message\ResponseInterface as Response;
-use Psr\Http\Message\ServerRequestInterface as Request;
-use Slim\Factory\AppFactory;
+use Slim\App;
 
-require_once __DIR__ . '/../vendor/autoload.php';
+$container = require __DIR__ . '/../bootstrap.php';
 
-$app = AppFactory::create();
-
-$app->get('/', function (Request $request, Response $response, $args) {
-    $response->getBody()->write("Hello world!");
-    return $response;
-});
-
-$app->run();
+$container->get(App::class)->run();
